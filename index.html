@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNS & GLORY | Elite Defense Portfolio</title>
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Black+Ops+One&display=swap)" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --olive-dark: #1a1f16;
+            --olive-mid: #2d3a24;
+            --olive-light: #4a5d3a;
+            --tan: #c4a35a;
+            --tan-light: #d4b76a;
+            --gunmetal: #2a3439;
+            --steel: #6b7b8c;
+            --blood-red: #8b0000;
+            --cream: #f5f5dc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: var(--olive-dark);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Camouflage Pattern Background */
+        .camo-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 30%, rgba(45, 58, 36, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 70% 60%, rgba(74, 93, 58, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 40% 80%, rgba(26, 31, 22, 0.9) 0%, transparent 50%),
+                radial-gradient(ellipse 70% 45% at 80% 20%, rgba(42, 52, 57, 0.7) 0%, transparent 50%),
+                linear-gradient(135deg, var(--olive-dark) 0%, var(--gunmetal) 50%, var(--olive-dark) 100%);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(26, 31, 22, 0.98) 0%, rgba(26, 31, 22, 0.9) 100%);
+            border-bottom: 3px solid var(--tan);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hk-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.2rem;
+            color: var(--olive-dark);
+            border: 3px solid var(--tan);
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .site-title {
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.5rem;
+            color: var(--tan);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--tan);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--tan);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--tan);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 2rem 2rem;
+            background: 
+                linear-gradient(135deg, rgba(26, 31, 22, 0.95) 0%, rgba(42, 52, 57, 0.9) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='[w3.org](http://www.w3.org/2000/svg)'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4a35a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border: 2px solid var(--tan);
+            color: var(--tan);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Black Ops One', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            color: var(--cream);
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--tan);
+        }
+
+        .hero-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--steel);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-divider {
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--tan), transparent);
+            margin: 2rem auto;
+        }
+
+        .hero-quote {
+            font-style: italic;
+            color: var(--cream);
+            opacity: 0.8;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--tan);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--tan);
+            color: var(--olive-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--tan-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(196, 163, 90, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--tan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--tan);
+            color: var(--olive-dark);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--gunmetal);
+            padding: 4rem 2rem;
+            border-top: 3px solid var(--tan);
+            border-bottom: 3px solid var(--tan);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-right: 1px solid rgba(196, 163, 90, 0.3);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            color: var(--tan);
+            display: block;
+        }
+
+        .stat-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            color: var(--cream);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-family: 'Oswald', sans-serif;
+            color: var(--tan);
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Black Ops One', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--cream);
+            margin: 1rem 0;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background: var(--tan);
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gunmetal) 0%, var(--olive-dark) 100%);
+            border: 3px solid var(--tan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-main::before {
+            content: '★';
+            font-size: 8rem;
+            color: var(--tan);
+            opacity: 0.2;
+        }
+
+        .about-image-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background: var(--blood-red);
+            border: 3px solid var(--tan);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-badge span:first-child {
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.5rem;
+            color: var(--cream);
+        }
+
+        .about-image-badge span:last-child {
+            font-size: 0.7rem;
+            color: var(--tan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-content h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--tan);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--cream);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+
+        .skill-item::before {
+            content: '▸';
+            color: var(--tan);
+            font-size: 1.2rem;
+        }
+
+        /* Arsenal Section */
+        .arsenal {
+            padding: 6rem 2rem;
+            background: var(--gunmetal);
+        }
+
+        .arsenal-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .arsenal-card {
+            background: linear-gradient(180deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
+            border: 2px solid var(--olive-light);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arsenal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--tan);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .arsenal-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .arsenal-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--tan);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .arsenal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--tan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .arsenal-icon span {
+            font-size: 2rem;
+        }
+
+        .arsenal-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: var(--tan);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .arsenal-card p {
+            color: var(--cream);
+            opacity: 0.8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--olive-mid) 0%, var(--olive-dark) 100%);
+        }
+
+        .projects-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--gunmetal);
+            border: 2px solid var(--olive-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--tan);
+            transform: scale(1.02);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--olive-dark) 0%, var(--blood-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: 'CLASSIFIED';
+            font-family: 'Black Ops One', cursive;
+            font-size: 2rem;
+            color: var(--cream);
+            opacity: 0.3;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 1rem;
+            background: var(--tan);
+            color: var(--olive-dark);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--tan);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .project-content p {
+            color: var(--cream);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--olive-dark);
+            border: 1px solid var(--olive-light);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--olive-dark);
+            border-top: 3px solid var(--tan);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--gunmetal);
+            padding: 3rem;
+            border: 2px solid var(--olive-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            color: var(--tan);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--olive-dark);
+            border: 2px solid var(--olive-light);
+            color: var(--cream);
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--tan);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gunmetal);
+            padding: 3rem 2rem;
+            border-top: 3px solid var(--tan);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-text {
+            color: var(--cream);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--tan);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(196, 163, 90, 0.3);
+            }
+
+            .stat-item:nth-child(3),
+            .stat-item:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .arsenal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--olive-dark);
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 2px solid var(--tan);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(196, 163, 90, 0.3);
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+
+            .arsenal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image-badge {
+                bottom: -10px;
+                right: 10px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .site-title {
+                font-size: 1.1rem;
+            }
+
+            .hk-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--tan);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator span {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--tan);
+            border-bottom: 2px solid var(--tan);
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="camo-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="hk-logo">HK</div>
+                <span class="site-title">GUNS & GLORY</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#arsenal">Arsenal</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">Defense Technology Specialist</div>
+            <h1>GUNS <span>&</span> GLORY</h1>
+            <p class="hero-subtitle">Udhayvir Singh Pawar • B.Tech Computer Science</p>
+            <div class="hero-divider"></div>
+            <p class="hero-quote">"In defense of our nation, we engineer the future"</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Operations</a>
+                <a href="#contact" class="btn btn-secondary">Establish Contact</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Coding Languages</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Hardware Platforms</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Dedication</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <span class="section-tag">// Personnel File</span>
+            <h2 class="section-title">ABOUT THE OPERATIVE</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="about-image-main"></div>
+                <div class="about-image-badge">
+                    <span>MRIIRS</span>
+                    <span>B.Tech CSE</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Mission: Defend & Innovate</h3>
+                <p>
+                    A dedicated B.Tech Computer Science student at Manav Rachna International Institute of Research and Studies, 
+                    specializing in the intersection of technology and defense systems. My expertise spans multiple programming 
+                    languages and hardware platforms, with a focused passion for military applications and national security.
+                </p>
+                <p>
+                    With hands-on experience in drone technology, embedded systems, and tactical analysis, I bring a unique 
+                    combination of technical proficiency and strategic thinking to every project. My goal is to contribute 
+                    to India's defense capabilities through innovative technological solutions.
+                </p>
+                <div class="skills-list">
+                    <div class="skill-item">Arduino Uno</div>
+                    <div class="skill-item">Raspberry Pi Pico</div>
+                    <div class="skill-item">Drone Technology</div>
+                    <div class="skill-item">Military Tactics</div>
+                    <div class="skill-item">Embedded Systems</div>
+                    <div class="skill-item">Aviation Tech</div>
+                    <div class="skill-item">National Security</div>
+                    <div class="skill-item">Defense Systems</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arsenal Section -->
+    <section class="arsenal" id="arsenal">
+        <div class="section-header">
+            <span class="section-tag">// Technical Arsenal</span>
+            <h2 class="section-title">CAPABILITIES</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="arsenal-grid">
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>💻</span></div>
+                <h3>Software Development</h3>
+                <p>Proficient in multiple programming languages including Python, C++, Java, and JavaScript. Capable of developing robust applications for defense and security systems.</p>
+            </div>
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>🔧</span></div>
+                <h3>Hardware Engineering</h3>
+                <p>Hands-on experience with Arduino Uno, Raspberry Pi Pico, and various microcontrollers. Building embedded systems for tactical applications.</p>
+            </div>
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>✈️</span></div>
+                <h3>Drone Technology</h3>
+                <p>Expertise in drone systems, flight controllers, and autonomous navigation. Developing UAV solutions for reconnaissance and surveillance.</p>
+            </div>
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>🎯</span></div>
+                <h3>Military Strategy</h3>
+                <p>Knowledge of military tactics, warfare methodologies, and strategic planning. Understanding of modern combat systems and defense protocols.</p>
+            </div>
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>🛡️</span></div>
+                <h3>National Security</h3>
+                <p>Focused on developing technologies that enhance national security and defense capabilities. Committed to protecting our nation's interests.</p>
+            </div>
+            <div class="arsenal-card">
+                <div class="arsenal-icon"><span>🚀</span></div>
+                <h3>Aviation Systems</h3>
+                <p>Interest in aviation technology, flight systems, and aerospace engineering. Working towards innovations in military aviation sector.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <span class="section-tag">// Field Operations</span>
+            <h2 class="section-title">MISSION LOGS</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-status">ACTIVE</span>
+                </div>
+                <div class="project-content">
+                    <h3>Autonomous Drone System</h3>
+                    <p>Development of an autonomous UAV system with advanced navigation capabilities for surveillance and reconnaissance missions.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Arduino</span>
+                        <span class="project-tag">GPS</span>
+                        <span class="project-tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-status">COMPLETED</span>
+                </div>
+                <div class="project-content">
+                    <h3>Tactical Communication System</h3>
+                    <p>Secure communication network for field operations using encrypted protocols and mesh networking technology.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Raspberry Pi</span>
+                        <span class="project-tag">Encryption</span>
+                        <span class="project-tag">RF</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-status">IN PROGRESS</span>
+                </div>
+                <div class="project-content">
+                    <h3>Perimeter Defense System</h3>
+                    <p>IoT-based security system with motion detection, thermal imaging integration, and real-time alert capabilities.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">IoT</span>
+                        <span class="project-tag">Sensors</span>
+                        <span class="project-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <span class="project-status">PLANNING</span>
+                </div>
+                <div class="project-content">
+                    <h3>Flight Simulation Platform</h3>
+                    <p>Advanced flight simulation software for training purposes with realistic physics and mission scenarios.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Unity</span>
+                        <span class="project-tag">C#</span>
+                        <span class="project-tag">Physics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <span class="section-tag">// Secure Channel</span>
+            <h2 class="section-title">ESTABLISH CONTACT</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="contact-container">
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Callsign / Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your identification">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Communication Channel</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Mission Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter message subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Transmission</label>
+                    <textarea id="message" name="message" placeholder="Enter your message..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Transmit Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="hk-logo" style="width: 40px; height: 40px; font-size: 0.9rem;">HK</div>
+                <span class="footer-text">GUNS & GLORY © 2024</span>
+            </div>
+            <p class="footer-text">Udhayvir Singh Pawar | MRIIRS | Defense Technology Enthusiast</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(26, 31, 22, 0.98)';
+            } else {
+                nav.style.background = 'linear-gradient(180deg, rgba(26, 31, 22, 0.98) 0%, rgba(26, 31, 22, 0.9) 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
